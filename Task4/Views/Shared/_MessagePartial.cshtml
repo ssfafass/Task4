@@ -1,0 +1,19 @@
+﻿@model MessageViewModel
+
+<tr>
+    <td>
+        @Model.UserFullName
+    </td>
+    <td>@Model.CreateDate</td>
+    <td>
+        <button type="button" class="btn btn-link" data-bs-container="body"
+        data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="@Model.Text">
+            @Model.Title
+        </button>
+    </td>
+    <td>
+        <a asp-controller="Home" asp-action="Create" asp-route-userSenderId="@Model.UserSenderId">
+            <i class="fa-solid fa-rotate-right"></i>
+        </a>
+    </td>
+</tr>

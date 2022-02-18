@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-1 mt-2">
+        <nav class="navbar bg-light">
+            <ul class="nav navbar-nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Create">Write</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='/Home/Index'>Receive</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-11">
+        @RenderBody()
+    </div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">You new message!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required:false)
+
+<script>
+    $(function () {
+        var current = location.pathname;
+        $('.navbar-nav li a').each(function () {
+            var $this = $(this);
+            if (current.indexOf($this.attr('href')) != -1) {
+                $this.addClass('active');
+            }
+        });
+    });
+    $(document).ready(function() {
+        $('[data-bs-toggle="popover"]').popover({ html : true });
+    });
+    $('#bodymessage').richText();
+</script>
+}

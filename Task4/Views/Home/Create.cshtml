@@ -1,0 +1,33 @@
+﻿@model MessageCreateViewModel
+@{
+    ViewData["Title"] = "Create new message.";
+    Layout = "/Views/Shared/_MessagesLayout.cshtml";
+}
+@if (Model == null || Model?.UserName == null)
+{
+    <h3>Write new message.</h3>
+}else
+{
+    <h3>Answer @Model.UserName</h3>
+}
+
+<form method="post" asp-action="Create" asp-controller="Home">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input asp-for="Emails" class="form-control" id="autocomplete" autocomplete="off"
+                       placeholder="Enter receiver name!" />
+                <label asp-for="Emails"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Title" class="form-control" id="titlemessage" autocomplete="Title" aria-required="true"
+                       placeholder="Enter your title!" />
+                <label asp-for="Title"></label>
+            </div>
+            <div class="form-floating">
+                <textarea asp-for="Message" class="form-control" id="bodymessage"></textarea>
+            </div>
+        </div>
+        <button id="sendSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Send</button>
+    </div>
+</form>
